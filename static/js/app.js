@@ -1,7 +1,8 @@
 function drawBarGraph(sampleID){
-
+    //read in data
     d3.json("/data/samples.json").then((data) => {
 
+    // get data and assign it to variables where the sample equals the sample that the user selected from the dropdown.
     var samples = data.samples;
     var resultArray = samples.filter(s=>s.id==sampleID);
     var result = resultArray[0];
@@ -10,8 +11,10 @@ function drawBarGraph(sampleID){
     var otu_labels = result.otu_labels;
     var sample_values = result.sample_values;
 
+    // get the top 10 OTUs and reverse it so the largest samples will be shown on the top of the graph
     var yticks = otu_ids.slice(0,10).map(otuID =>`OTU ${otuID}`).reverse();
 
+    //set up the data for the bar graph
     var barData = {
         x: sample_values.slice(0,10).reverse(),
         y: yticks,
@@ -30,6 +33,7 @@ function drawBarGraph(sampleID){
         margin: {t: 30, l: 150}
     };
 
+    //make the bar graph with plotly
     Plotly.newPlot("bar", barArray, barLayout);
 
 
@@ -89,18 +93,17 @@ function drawGauge(sampleID){
                             {range:[7,8], color:"rgb(217, 97, 73)"},
                             {range:[8,9], color:"rgb(197, 53, 50)"},
                             {range:[9,10], color:"rgb(178, 10, 28)"}
-
                         ],
                     bar: {color:"rgb(180,10,20"}
                 },
                 value: result.wfreq,
-                title: { text: "Belly Button Washing Frequency <br> Scrubs Per Day"},
+                title: { text: "Belly Button Washing Frequency <br> (Scrubs Per Day)"},
                 type: "indicator",
-                mode: "gauge+number"
+                mode: "gauge+number",
             }
         ];
     
-        var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+        var layout = { width: 500, height: 400};
         Plotly.newPlot('gauge', gaugeData, layout);
 
     });

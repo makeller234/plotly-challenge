@@ -1,0 +1,35 @@
+.jumbotron{
+    background-color:rgb(245, 172, 123);
+}
+
+.jumbotron h1{
+    color:white;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgb(109, 108, 108);
+}
+
+.jumbotron p{
+    color:  rgb(109, 108, 108)
+}
+
+.well{
+    background-color:#b80f0a;
+    color:white;
+    text-align:center;
+}
+
+#selDataset{
+    background-color:#b80f0a;
+    color:white;
+}
+
+.panel{
+    border-color:#b80f0a;
+
+}
+
+.panel .panel-heading{
+    background-color:#b80f0a;
+    border-color:#b80f0a;
+    text-align: center;
+}
