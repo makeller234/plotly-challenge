@@ -83,6 +83,8 @@ function drawGauge(sampleID){
                 gauge: {
                     axis: {range: [0,10], tickwidth:1, tickcolor:"rgb(180,10,20"},
                     steps:[
+                            // colors chosen based off what just automatically loaded when I used the "otu_ids" for colors in the 
+                            // bar and circle graphs 
                             {range:[0,1], color:"rgb(220, 220, 220)"},
                             {range:[1,2], color:"rgb(231, 209, 191)"},
                             {range:[2,3], color:"rgb(236, 204, 179)"},
@@ -103,7 +105,8 @@ function drawGauge(sampleID){
             }
         ];
     
-        var layout = { width: 500, height: 400};
+        var layout = { width: 500, height: 400}; // I gave it this layout, otherwise it loaded a little too small for my
+                                                // liking if I just left it blank.
         Plotly.newPlot('gauge', gaugeData, layout);
 
     });
@@ -123,6 +126,7 @@ function showMeta(sampleID){
 
         var panel = d3.select("#sample-metadata");
 
+        // clears out existing metadata and loads in the new information when the user selects from the drop down.
         panel.html("");
         Object.entries(result).forEach(([key,value])=>{
      
@@ -134,8 +138,9 @@ function showMeta(sampleID){
     
 }
 
-function optionChanged(newSampleID){
 
+function optionChanged(newSampleID){
+    // call all the functions when the user makes their choice
     drawBarGraph(newSampleID);
     drawBubbleGraph(newSampleID);
     showMeta(newSampleID);
@@ -144,15 +149,11 @@ function optionChanged(newSampleID){
 
 
 function initDashboard(){
-
-    console.log("initializing dashboard...");
-
     var selector = d3.select("#selDataset");
 
     d3.json("/data/samples.json").then((data)=>{
 
         var sampleNames = data.names;
-        
         
         sampleNames.forEach((sampleID) => {
             selector.append("option")
@@ -171,6 +172,5 @@ function initDashboard(){
     });
 
 }
-
 
 initDashboard();
