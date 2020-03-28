@@ -1,6 +1,6 @@
 function drawBarGraph(sampleID){
     //read in data
-    d3.json("/data/samples.json").then((data) => {
+    d3.json("samples.json").then((data) => {
 
     // get data and assign it to variables where the sample equals the sample that the user selected from the dropdown.
     var samples = data.samples;
@@ -43,7 +43,7 @@ function drawBarGraph(sampleID){
 
 function drawBubbleGraph(sampleID){
 
-    d3.json("/data/samples.json").then((data)=>{
+    d3.json("samples.json").then((data)=>{
         var samples = data.samples;
         var resultArray = samples.filter(s=>s.id==sampleID);
         var result = resultArray[0];
@@ -72,7 +72,7 @@ function drawBubbleGraph(sampleID){
 }
 
 function drawGauge(sampleID){
-    d3.json("/data/samples.json").then((data)=>{
+    d3.json("samples.json").then((data)=>{
         var metadata = data.metadata;
         var resultArray = metadata.filter(s=>s.id==sampleID);
         var result = resultArray[0];
@@ -114,7 +114,7 @@ function drawGauge(sampleID){
 
 function showMeta(sampleID){
 
-    d3.json("/data/samples.json").then((data) =>{
+    d3.json("samples.json").then((data) =>{
 
         var metadata = data.metadata;
         var resultArray = metadata.filter(s=>s.id==sampleID);
@@ -151,7 +151,7 @@ function optionChanged(newSampleID){
 function initDashboard(){
     var selector = d3.select("#selDataset");
 
-    d3.json("/data/samples.json").then((data)=>{
+    d3.json("samples.json").then((data)=>{
 
         var sampleNames = data.names;
         
